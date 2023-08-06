@@ -21,8 +21,8 @@ def classify_image(image_base64_data,filae_path=None):
         len_img_aary=32*32*3+32*32
         final =combined_img.reshape(1,len_img_aary).astype(float)
         result.append({'class':class_number_to_name(__model.predict(final)[0]),
-                       'class_prob':np.round(__model.predict_proba(final)*100,2).tolist()[0],
-                       'class_dic':__class_name_to_number})
+                       'class_probability':np.round(__model.predict_proba(final)*100,2).tolist()[0],
+                       'class_dictionary':__class_name_to_number})
 
     return result
 
@@ -77,5 +77,5 @@ def get_bs6_image_test_virat():
 
 if __name__=="__main__":
     load_artifacts()
-    print(classify_image(None,'./server/testimages/virat ansuka.jpg'))
+    print(classify_image(get_bs6_image_test_virat(),None))
     
